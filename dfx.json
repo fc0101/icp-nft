@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "ic-nft-backend": {
+      "main": "src/ic-nft-backend/main.mo",
+      "type": "motoko"
+    },
+    "ic-nft-frontend": {
+      "dependencies": [
+        "ic-nft-backend"
+      ],
+      "source": [
+        "src/ic-nft-frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "ic-nft-frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
