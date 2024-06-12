@@ -6,7 +6,7 @@ This is NFT minting boilerplate with Motoko, React.
     # install DFX
     sh -ci "$(curl -fsSL https://internetcomputer.org/install.sh)"
     
-    git clone [https://github.com/fc0101/icp-nft.git](https://github.com/fc0101/icp-nft.git)
+    git clone https://github.com/fc0101/icp-nft.git
     
     cd icp-nft
     
