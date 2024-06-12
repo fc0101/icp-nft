@@ -2,7 +2,7 @@
   "canisters": {
     "ic-nft-backend": {
       "main": "src/ic-nft-backend/main.mo",
-      "type": "motoko"
+      "type": "motoko"      
     },
     "ic-nft-frontend": {
       "dependencies": [
@@ -14,6 +14,7 @@
       "type": "assets",
       "workspace": "ic-nft-frontend"
     }
+    
   },
   "defaults": {
     "build": {
