@@ -66,14 +66,14 @@ shared actor class Dip721NFT(custodian: Principal, init : Types.Dip721NonFungibl
         return #Err(#InvalidTokenId);
       };
       case (?token) {
-        // if (
-        //   caller != token.owner and
-        //   not List.some(custodians, func (custodian : Principal) : Bool { custodian == caller })
-        // ) {
-        //   return #Err(#Unauthorized);
-        // } else if (Principal.notEqual(from, token.owner)) {
-        //   return #Err(#Other);
-        // } else {
+        if (
+          caller != token.owner and
+          not List.some(custodians, func (custodian : Principal) : Bool { custodian == caller })
+        ) {
+          return #Err(#Unauthorized);
+        } else if (Principal.notEqual(from, token.owner)) {
+          return #Err(#Other);
+        } else {
           nfts := List.map(nfts, func (item : Types.Nft) : Types.Nft {
             if (item.id == token.id) {
               let update : Types.Nft = {
@@ -88,7 +88,7 @@ shared actor class Dip721NFT(custodian: Principal, init : Types.Dip721NonFungibl
           });
           transactionId += 1;
           return #Ok(transactionId);   
-        // };
+        };
       };
     };
   };
@@ -152,10 +152,10 @@ shared actor class Dip721NFT(custodian: Principal, init : Types.Dip721NonFungibl
     return List.toArray(tokenIds);
   };
 
-  public shared({ }) func mintDip721(to: Principal, name: Text, url: Text) : async Types.MintReceipt {
-    // if (not List.some(custodians, func (custodian : Principal) : Bool { custodian == caller })) {
-    //   return #Err(#Unauthorized);
-    // };
+  public shared({ caller }) func mintDip721(to: Principal, name: Text, url: Text) : async Types.MintReceipt {
+    if (not List.some(custodians, func (custodian : Principal) : Bool { custodian == caller })) {
+      return #Err(#Unauthorized);
+    };
     let result = mint(to, name, url);
     return #Ok(result);
   };
